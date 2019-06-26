@@ -6,6 +6,12 @@
   <title>My Own Paint</title>
   <link rel='stylesheet' href='css/style.css'>
   <script src='js/script.js' defer></script>
+  <script src='js/drawing.js' defer></script>
+  <script src='js/drawing-tools/background-canvas.js' defer></script>
+  <script src='js/drawing-tools/choose-color-canvas.js' defer></script>
+  <script src='js/drawing-tools/clear-canvas.js' defer></script>
+  <script src='js/drawing-tools/save-canvas.js' defer></script>
+  <script src='js/drawing-tools/slider-canvas.js' defer></script>
 </head>
 
 <body>
@@ -45,7 +51,7 @@
 
       <span class='input-container'>
         <input type='radio' name='color' class='color color--custom' id='custom' value='custom'>
-        <label for='custom'>Custom color</label>
+        <label for='custom' class='label--custom'>Custom color</label>
         <input class='custom--text'>
       </span>
 
@@ -56,11 +62,13 @@
     <h2>Choose brush size:</h2>
     <div class='slider'>
       <span class='slider-line'></span>
-      <span class='slider-pin' value='10'></span>
+      <span class='slider-pin' value='10'>1</span>
     </div>
     <h2 onclick='setBackgroundToCanvas()'>Add white bg to canvas</h2>
-    <h2 onclick='save("jpg")'>Save this as JPG</h2>
-    <h2 onclick='save("png")'>Save this as PNG</h2>
+    <h2 class='save save--jpg'>Save this as JPG</h2>
+    <h2 class='save save--png'>Save this as PNG</h2>
+    <input type='file' name='canvas-bg' id='canvas-bg' class='canvas-bg'>
+    <label for='canvas-bg'><h2>Set image as canvas background</h2></label>
   </div>
   <canvas class='canvas' width='400' height='400'>
   </canvas>
