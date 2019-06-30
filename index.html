@@ -3,79 +3,103 @@
 
 <head>
   <meta charset='utf-8'>
-  <title>My Own Paint</title>
+  <title>WX Paint</title>
   <link rel='shortcut icon' href='img/icon.jpg' type='image/jpg'>
   <link rel='stylesheet' href='css/style.css'>
+  <script src='js/WXTools.js' defer></script>
   <script src='js/script.js' defer></script>
   <script src='js/drawing.js' defer></script>
   <script src='js/drawing-tools/background-canvas.js' defer></script>
   <script src='js/drawing-tools/choose-color-canvas.js' defer></script>
   <script src='js/drawing-tools/clear-canvas.js' defer></script>
+  <script src='js/drawing-tools/resize-canvas.js' defer></script>
   <script src='js/drawing-tools/save-canvas.js' defer></script>
   <script src='js/drawing-tools/slider-canvas.js' defer></script>
+  <script src='js/drawing-tools/hide-tools.js' defer></script>
 </head>
-
+<!--  BEM methodology is being used (Block-Element-Modificator). https://en.bem.info/  -->
 <body>
   <div class='tools'>
-    <h1>MyOwnPaint.html</h1>
-    <h2>Choose your color:</h2>
-    <div class='colors'>
-      <span class='input-container'>
-        <input type='radio' name='color' class='color color--black' id='black' value='black' checked>
-        <label for='black'>Black</label>
-      </span>
+    <form name='tools'>
+      <h1>MyOwnPaint.html</h1>
+      <h2>Choose your color:</h2>
+      <div class='tools__colors colors'>
+        <span class='colors__input-container input-container'>
+          <input class='input-container__color input-container__color--black' type='radio' name='color' id='black' value='black' checked>
+          <label class='input-container__label' for='black'>Black</label>
+        </span>
 
-      <span class='input-container'>
-        <input type='radio' name='color' class='color color--white' id='white' value='white'>
-        <label for='white'>White</label>
-      </span>
+        <span class='colors__input-container input-container'>
+          <input class='input-container__color input-container__color--white' type='radio' name='color' id='white' value='white'>
+          <label class='input-container__label' for='white'>White</label>
+        </span>
 
-      <span class='input-container'>
-        <input type='radio' name='color' class='color color--red' id='red' value='red'>
-        <label for='red'>Red</label>
-      </span>
+        <span class='colors__input-container input-container'>
+          <input class='input-container__color input-container__color--red' type='radio' name='color' id='red' value='red'>
+          <label class='input-container__label' for='red'>Red</label>
+        </span>
 
-      <span class='input-container'>
-        <input type='radio' name='color' class='color color--green' id='green' value='green'>
-        <label for='green'>Green</label>
-      </span>
+        <span class='colors__input-container input-container'>
+          <input class='input-container__color input-container__color--green' type='radio' name='color' id='green' value='green'>
+          <label class='input-container__label' for='green'>Green</label>
+        </span>
 
-      <span class='input-container'>
-        <input type='radio' name='color' class='color color--blue' id='blue' value='blue'>
-        <label for='blue'>Blue</label>
-      </span>
+        <span class='colors__input-container input-container'>
+          <input class='input-container__color input-container__color--blue' type='radio' name='color' id='blue' value='blue'>
+          <label class='input-container__label' for='blue'>Blue</label>
+        </span>
 
-      <span class='input-container'>
-        <input type='radio' name='color' class='color color--yellow' id='yellow' value='yellow'>
-        <label for='yellow'>Yellow</label>
-      </span>
+        <span class='colors__input-container input-container'>
+          <input class='input-container__color input-container__color--yellow' type='radio' name='color' id='yellow' value='yellow'>
+          <label class='input-container__label' for='yellow'>Yellow</label>
+        </span>
 
-      <span class='input-container'>
-        <input type='radio' name='color' class='color color--custom' id='custom' value='custom'>
-        <label for='custom' class='label--custom'>Custom color</label>
-        <input class='custom--text'>
-      </span>
+        <span class='colors__input-container input-container'>
+          <input class='input-container__color input-container__color--custom' type='radio' name='color' id='custom' value='custom'>
+          <label class='input-container__label input-container__label--custom' for='custom'>Custom color</label>
+          <input class='input-container__input-custom-color input-custom-color'>
+        </span>
 
-      <span class='input-container'>
-        <p class='clear'>Clear Canvas</p>
-      </span>
-    </div>
-    <h2>Choose brush size:</h2>
-    <div class='slider'>
-      <span class='slider-line'></span>
-      <span class='slider-pin' value='10'>1</span>
-    </div>
-    <h2 class='canvas__add-background'>Add white bg to canvas</h2>
-    <h2 class='save save--jpg'>Save this as JPG</h2>
-    <h2 class='save save--png'>Save this as PNG</h2>
+        <span class='colors__input-container input-container'>
+          <p class='input-container__clear'>Clear Canvas</p>
+        </span>
 
-    <!-- <span>
+      </div>
+      <h2>Choose brush size:</h2>
+      <div class='tools__slider slider'>
+        <span class='slider__line'></span>
+        <span class='slider__pin'>1</span>
+        <input class='slider__input hidden' type='number' name='brushSize' id='brushSize' value='1' />
+      </div>
+      <h2 class='tools__add-background add-background'>Add white background to canvas</h2>
+      <h2 class='tools__save save'>Save this picture</h2>
+
+      <!-- <span>
     <input type='file' name='canvas-bg' id='canvas-bg' class='canvas-bg'>
     <label for='canvas-bg'><h2>Set image as canvas background</h2></label>
     </span> -->
-
+    </form>
   </div>
-  <canvas class='canvas' width='400' height='400'>
-  </canvas>
-  <p class='author'>Made by <a href=''>WearponiX</a>, hosted by <a href=''>GitHub</a>. Nothing is reserved, I'm too lazy to read about that.</p>
+  <span class='toggle-tools'></span>
+  <div class='canvas-tools'>
+    <span class='canvas-tools__canvas-size canvas-size'>
+      Enter canvas size:
+      <input name='canvas-width' class='canvas-size__input canvas-size__input--width' type='number' value='400' />
+      x
+      <input name='canvas-height' class='canvas-size__input canvas-size__input--height' type='number' value='400' />
+    </span>
+    <canvas class='canvas-tools__canvas' width='400' height='400'>
+      If you read this text - your browser is outdated, this webpage will not work properly.
+    </canvas>
+  </div>
+
+  <template id='addColor'>
+    <span class='colors__input-container input-container'>
+      <input class='input-container__color input-container__color--' type='radio' name='color' id='' value=''>
+      <label class='input-container__label' for=''></label>
+    </span>
+  </template>
+
+  <p class='author'>Made by <a href=''>WearponiX</a>, host by <a href=''>GitHub</a>.</p>
+
 </html>

@@ -4,7 +4,5 @@ function save(format) {
   save.download = 'img.' + format;
   save.click();
 }
-var saveJPG = document.querySelector('.save--jpg');
-var savePNG = document.querySelector('.save--png');
-saveJPG.addEventListener('click', function(){save('jpg')});
-savePNG.addEventListener('click', function(){save('png')});
+var save = document.querySelector('.save');
+save.addEventListener('click', function(){save('png')});

@@ -1,20 +1,29 @@
 var slider = document.querySelector('.slider');
-var sliderPin = slider.querySelector('.slider-pin');
-function moveSliderPin() {
-  var sliderLine = slider.querySelector('.slider-line');
+var sliderPin = slider.querySelector('.slider__pin');
+var sliderInput = slider.querySelector('.slider__input');
+var sliderLine = slider.querySelector('.slider__line');
+//функция двигает пин слайдера и меняет значение во внутреннем input 
+function getSliderPinValue() {
   var sliderX = slider.getBoundingClientRect().left + pageXOffset;
   var mouseX = event.pageX - sliderX - sliderPin.offsetWidth;
-  if (mouseX < 25) {
-    mouseX = 1
+  //получаем процент текущей координаты мыши от всего блока в 275 пикселей, умножаем на 0.9 (x/10*9) т.к. значения будут от 0 до 9 
+  //далее делим на 10 для получения 1 знака после запятой и прибавим 1, итог - значения от 1 до 10
+  sliderInput.value = Math.floor(getPerc(mouseX, 275)*0.9)/10+1;
+  if (mouseX < 0) {
+    mouseX = 0
+    sliderInput.value = 1;
   };
   if (mouseX > 275) {
     mouseX = 275
+    sliderInput.value = 10;
   };
-  sliderPin.style.margin = '0 0 0 ' + mouseX + 'px';
-  sliderLine.style.width = mouseX + 'px';
-  mouseX /= 2.75;
-  sliderPin.value = mouseX / 10;
-  sliderPin.textContent = Math.ceil(sliderPin.value * 10) / 10;
+  moveSliderPin(mouseX);
 };
 
-slider.addEventListener('mouseup', moveSliderPin);
+function moveSliderPin(value) {
+  sliderPin.style.margin = '0 0 0 ' + value + 'px';
+  sliderLine.style.width = value + 'px';
+  sliderPin.textContent = sliderInput.value;
+};
+
+slider.addEventListener('mouseup', getSliderPinValue);

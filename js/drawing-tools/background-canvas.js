@@ -1,11 +1,10 @@
-var whiteCanvas = document.querySelector('.canvas__add-background');
+var whiteCanvas = document.querySelector('.add-background');
 whiteCanvas.addEventListener('click', setBackgroundToCanvas);
 
 function setBackgroundToCanvas(evt, value = 'white', type = 'color') {
   if (type == 'color') {
     clear();
     ctx.rect(0, 0, 400, 400);
-    console.log(value);
     ctx.fillStyle = value;
     ctx.fill();
     ctx.fillStyle = ''

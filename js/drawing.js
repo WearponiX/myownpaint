@@ -1,4 +1,4 @@
-var canvas = document.querySelector('canvas.canvas');
+var canvas = document.querySelector('canvas.canvas-tools__canvas');
 var ctx = canvas.getContext('2d');
 
 var canvasX = canvas.getBoundingClientRect().left + pageXOffset;
@@ -8,7 +8,7 @@ canvas.addEventListener('mousedown', start);
 
 function initDrawing() {
   ctx.strokeStyle = getColor();
-  ctx.lineWidth = sliderPin.value;
+  ctx.lineWidth = sliderInput.value;
   ctx.lineJoin = 'round';
   ctx.lineCap = 'round';
   ctx.imageSmoothingQuality = 'high'
@@ -24,6 +24,7 @@ function start(event) {
 
 function move(event) {
   event.preventDefault();
+  document.addEventListener('mouseout', end);
   document.addEventListener('mouseup', end);
   ctx.lineTo((event.pageX - canvasX), (event.pageY - canvasY));
   ctx.stroke();
@@ -32,6 +33,7 @@ function move(event) {
 function end(event) {
   event.preventDefault();
   event.target.removeEventListener('mousemove', move);
+  document.removeEventListener('mouseout', end);
   document.removeEventListener('mouseup', end);
   ctx.moveTo((event.pageX - canvasX), (event.pageY - canvasY));
   ctx.closePath();
@@ -59,7 +61,6 @@ function moveMobile(event) {
 
 function endMobile(event) {
   event.preventDefault();
-
   console.log('end');
   event.target.removeEventListener('touchmove', moveMobile);
   document.removeEventListener('touchend', endMobile);
