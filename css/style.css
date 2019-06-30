@@ -1,6 +1,7 @@
 @import "tools.css";
 @import "toggle-tools.css";
 @import "canvas.css";
+@import "popup.css";
 
 body {
   font-family: 'Impact', sans-serif;

@@ -1,0 +1,38 @@
+.popup-color__background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.1);
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  z-index: 10;
+}
+
+.popup-color-form {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 260px;
+  height: 300px;
+  position: fixed;
+  left: calc(50% - 130px);
+  top: calc(50% - 150px);
+  padding: 2%;
+  z-index: 100;
+  background: white;
+}
+
+.popup-color-form__heading {
+  text-align: center;
+  padding: 0 40px;
+  margin: 0 0 20px;
+}
+.popup-color-form__ask{
+  text-align: left;
+}
+.popup-color-form__input{
+  border: 2px solid black;
+  border-radius: 50px;
+  margin: 20px;
+}

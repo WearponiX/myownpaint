@@ -1,11 +1,13 @@
-var tools = document.forms.tools;
-var preset = {
-  color: tools.color.value,
-  size: tools.brushSize.value
-};
-tools.addEventListener('change', function() {
-  preset = {
-    color: tools.color.value,
-    size: tools.brushSize.value
-  };
-})
+(function() {
+  let tools = document.forms.tools;
+  tools.addEventListener('change', function() {
+    window.preset = {
+      color: tools.color.value,
+      brushSize: tools.brushSize.value,
+      canvasWidth: tools.canvasWidth.value,
+      canvasHeight: tools.canvasHeight.value
+      //    customColors: [{}]
+    };
+    lsSet('preset', window.preset);
+  })
+})();
