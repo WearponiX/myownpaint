@@ -4,7 +4,7 @@ var ctx = canvas.getContext('2d');
 var canvasX = canvas.getBoundingClientRect().left + pageXOffset;
 var canvasY = canvas.getBoundingClientRect().top + pageYOffset;
 
-canvas.addEventListener('mousedown', start);
+window.onload = function(){canvas.addEventListener('mousedown', start)};
 
 function initDrawing() {
   ctx.strokeStyle = getColor();
