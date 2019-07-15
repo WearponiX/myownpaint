@@ -20,10 +20,11 @@ function getSliderPinValue() {
   moveSliderPin(mouseX);
 };
 
-function moveSliderPin(value) {
-  sliderPin.style.margin = '0 0 0 ' + value + 'px';
-  sliderLine.style.width = value + 'px';
-  sliderPin.textContent = sliderInput.value;
+function moveSliderPin(pixels, size=sliderInput.value) {
+  sliderPin.style.margin = '0 0 0 ' + pixels + 'px';
+  sliderLine.style.width = pixels + 'px';
+  sliderPin.textContent = size;
+  sliderInput.value = size;
 };
 
 slider.addEventListener('mouseup', getSliderPinValue);

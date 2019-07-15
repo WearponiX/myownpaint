@@ -4,7 +4,7 @@ whiteCanvas.addEventListener('click', setBackgroundToCanvas);
 function setBackgroundToCanvas(evt, value = 'white', type = 'color') {
   if (type == 'color') {
     clear();
-    ctx.rect(0, 0, 400, 400);
+    ctx.rect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = value;
     ctx.fill();
     ctx.fillStyle = ''

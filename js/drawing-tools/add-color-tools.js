@@ -1,5 +1,5 @@
 var templateColorPattern = document.querySelector('template#color-pattern').content.querySelector('.input-container');
-var newColor = document.querySelector('.add-color');
+var newColor = document.querySelector('.input-container__add');
 var popup = document.querySelector('.popup-color');
 var popupBackground = document.querySelector('.popup-color__background');
 
@@ -28,7 +28,7 @@ function addColor(name, color) {
   let temp = templateColorPattern.cloneNode(true);
   temp.querySelector('input').value = color.toLowerCase();
   temp.querySelector('input').id = name.toLowerCase();
-  temp.querySelector('input').classList.add('input-container__color--' + name.toLowerCase());
+  temp.querySelector('input').classList.add('palette-custom-color input-container__color--' + name.toLowerCase());
   temp.querySelector('label').htmlFor = name.toLowerCase();
   temp.querySelector('label').textContent = name;
   
@@ -42,4 +42,11 @@ function addColor(name, color) {
   
   colors.appendChild(temp);
 };
+
+window.getCustomColors = function(){
+  var colors = Array.from(document.querySelectorAll('.palette-custom-color'));
+  console.log(colors)
+  
+} 
+
 newColor.addEventListener('click', getColorFromUser);

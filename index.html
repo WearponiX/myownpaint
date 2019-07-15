@@ -7,7 +7,6 @@
   <link rel='shortcut icon' href='img/icon.jpg' type='image/jpg'>
   <link rel='stylesheet' href='css/style.css'>
   <script src='js/WXTools.js' defer></script>
-  <script src='js/script.js' defer></script>
   <script src='js/drawing.js' defer></script>
   <script src='js/drawing-tools/background-canvas.js' defer></script>
   <script src='js/drawing-tools/choose-color-canvas.js' defer></script>
@@ -17,6 +16,7 @@
   <script src='js/drawing-tools/slider-canvas.js' defer></script>
   <script src='js/drawing-tools/hide-tools.js' defer></script>
   <script src='js/drawing-tools/add-color-tools.js' defer></script>
+  <script src='js/preset.js' defer></script>
 </head>
 <!--  BEM methodology is being used (Block-Element-Modificator). https://en.bem.info/  -->
 
@@ -57,9 +57,7 @@
         </span>
 
         <span class='colors__input-container input-container'>
-          <input class='input-container__color input-container__color--custom' type='radio' name='color' id='custom' value='custom'>
-          <label class='input-container__label input-container__label--custom' for='custom'>Custom color</label>
-          <input class='input-container__input-custom-color input-custom-color'>
+          <p class='input-container__add'>Add new color</p>
         </span>
 
         <span class='colors__input-container input-container'>
@@ -73,10 +71,9 @@
         <span class='slider__pin'>1</span>
         <input class='slider__input hidden' type='number' name='brushSize' id='brushSize' value='1' />
       </div>
-      <h2 class='tools__add-background add-background'>Add white background to canvas</h2>
-      <h2 class='tools__save save'>Save this picture</h2>
-      <h2 class='tools__add-color add-color'>Add new color to palete</h2>
-
+      <h2 class='tools__text-buttons tools__add-background add-background'>Add white background to canvas</h2>
+      <h2 class='tools__text-buttons tools__save save'>Save this picture</h2>
+      <h2 class='tools__text-buttons tools__reset-settings reset-settings'>Reset settings </h2>
       <!-- <span>
     <input type='file' name='canvas-bg' id='canvas-bg' class='canvas-bg'>
     <label for='canvas-bg'><h2>Set image as canvas background</h2></label>
@@ -112,7 +109,7 @@
       <span class='popup-color-form__ask'>Choose new color:</span>
       <input class='popup-color-form__input popup-color-form__input--color' type='color' name='popupColor' />
       <span class='popup-color-form__preview'></span>
-      <input type='submit' content='Create this awesome color!' />
+      <input class='popup-color-form__submit' type='submit' value='Create this awesome color!' />
     </form>
     <span class='popup-color__background'></span>
   </div>

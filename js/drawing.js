@@ -48,8 +48,6 @@ function startMobile(event) {
   ctx.beginPath();
   ctx.moveTo((event.changedTouches[0].pageX - canvasX), (event.changedTouches[0].pageY - canvasY));
   event.target.addEventListener('touchmove', moveMobile);
-  console.log('start');
-
 };
 
 function moveMobile(event) {
@@ -61,7 +59,6 @@ function moveMobile(event) {
 
 function endMobile(event) {
   event.preventDefault();
-  console.log('end');
   event.target.removeEventListener('touchmove', moveMobile);
   document.removeEventListener('touchend', endMobile);
   ctx.moveTo((event.changedTouches[0].pageX - canvasX), (event.changedTouches[0].pageY - canvasY));

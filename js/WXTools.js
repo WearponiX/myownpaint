@@ -20,12 +20,20 @@ function getPerc(perc, max) {
   return (perc / max * 100);
 }
 
-function lsSet(name, val) {
+function storageSet(name, val) {
+  val = JSON.stringify(val);
   return window.localStorage.setItem(name, val);
 };
 
-function lsGet(name) {
-  return window.localStorage.getItem(name);
+function storageGet(name) {
+  var val = window.localStorage.getItem(name);
+  if (!val) return;
+  val = JSON.parse(val);
+  return val;
+}
+
+function storageClear() {
+  return window.localStorage.clear();
 }
 
 function hide(element) {
