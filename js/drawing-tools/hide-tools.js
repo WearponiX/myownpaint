@@ -12,5 +12,5 @@ function hideToolbar() {
 function showToolbar() {
   toolsShow.removeEventListener('click', showToolbar);
   toolsShow.addEventListener('click', hideToolbar);
-  tools.style.display = 'block';  
+  tools.style.display = 'block';
 };

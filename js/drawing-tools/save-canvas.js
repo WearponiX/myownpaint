@@ -8,7 +8,7 @@
   };
 
   var save = document.querySelector('.save');
-  save.addEventListener('click', function(){
+  save.addEventListener('click', function() {
     savePicture('png');
   });
 

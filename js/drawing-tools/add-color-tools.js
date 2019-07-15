@@ -31,22 +31,22 @@ function addColor(name, color) {
   temp.querySelector('input').classList.add('palette-custom-color input-container__color--' + name.toLowerCase());
   temp.querySelector('label').htmlFor = name.toLowerCase();
   temp.querySelector('label').textContent = name;
-  
+
   var tempStyle = document.querySelector('style');
   if (!tempStyle) {
     var tempStyle = document.createElement('style');
     document.querySelector('head').appendChild(tempStyle);
   };
-  tempStyle.innerHTML += '.input-container__color--'+name.toLowerCase()+'::before{background:' + color + '}';
+  tempStyle.innerHTML += '.input-container__color--' + name.toLowerCase() + '::before{background:' + color + '}';
 
-  
+
   colors.appendChild(temp);
 };
 
-window.getCustomColors = function(){
+window.getCustomColors = function() {
   var colors = Array.from(document.querySelectorAll('.palette-custom-color'));
   console.log(colors)
-  
-} 
+
+}
 
 newColor.addEventListener('click', getColorFromUser);

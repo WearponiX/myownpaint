@@ -19,7 +19,7 @@
     storageClear();
   };
 
-  function applySettings (def=false) {
+  function applySettings(def = false) {
     if (def) {
       var preset = defaultSettings;
       storageClear();

@@ -4,7 +4,7 @@ var canvasHeightInput = document.querySelector('.canvas-size__input--height');
 function resizeCanvas() {
   var width = canvasWidthInput.value;
   var height = canvasHeightInput.value;
-  var img = ctx.getImageData(0,0,width,height);
+  var img = ctx.getImageData(0, 0, width, height);
   canvas.width = width;
   canvas.height = height;
   canvas.style.width = width + 'px';
