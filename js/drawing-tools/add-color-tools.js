@@ -13,8 +13,10 @@ popup.addEventListener('submit', function(event) {
   let form = document.forms.popupColorForm;
   let name = form.popupName.value;
   let color = form.popupColor.value;
-  log(color);
-  addColor(name, color)
+  addColor(name, color);
+  var event = new Event('addcolor');
+  popup.dispatchEvent(event);
+  popup.querySelector('form').reset();
 })
 
 function getColorFromUser(ask) {
@@ -26,11 +28,15 @@ function addColor(name, color) {
     color = white
   };
   let temp = templateColorPattern.cloneNode(true);
+  temp.querySelector('label').textContent = name;
+  if (name.indexOf(' '))
+    while (name.indexOf(' ') > 0) {
+      name = name.replace(' ', '');
+    };
   temp.querySelector('input').value = color.toLowerCase();
   temp.querySelector('input').id = name.toLowerCase();
-  temp.querySelector('input').classList.add('palette-custom-color input-container__color--' + name.toLowerCase());
+  temp.querySelector('input').classList.add('palette-custom-color', 'input-container__color--' + name.toLowerCase());
   temp.querySelector('label').htmlFor = name.toLowerCase();
-  temp.querySelector('label').textContent = name;
 
   var tempStyle = document.querySelector('style');
   if (!tempStyle) {
@@ -38,15 +44,20 @@ function addColor(name, color) {
     document.querySelector('head').appendChild(tempStyle);
   };
   tempStyle.innerHTML += '.input-container__color--' + name.toLowerCase() + '::before{background:' + color + '}';
-
-
+  
   colors.appendChild(temp);
+  temp.querySelector('input').checked = true;
 };
 
 window.getCustomColors = function() {
-  var colors = Array.from(document.querySelectorAll('.palette-custom-color'));
-  console.log(colors)
-
+  var customColors = {};
+  let customColorsDOM = Array.from(document.querySelectorAll('.input-container--custom-color'));
+  customColorsDOM.forEach(function(elem) {
+    let name = elem.querySelector('label').textContent;
+    let value = elem.querySelector('input').value;
+    customColors[name] = value;
+  })
+  return customColors;
 }
 
 newColor.addEventListener('click', getColorFromUser);

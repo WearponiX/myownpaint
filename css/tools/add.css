@@ -11,18 +11,8 @@
   height: 50px;
   content: '';
   margin: 0;
+  background: url('../../img/addColor.png') 10px 10px no-repeat;
+  background-size: 30px;
   border: 5px solid black;
   border-radius: 50px;
-}
-
-.input-container__add::after {
-  display: block;
-  content: '';
-  background: black;
-  width: 10px;
-  height: 10px;
-  position: absolute;
-  top: 25px;
-  left: 25px;
-  
 }
