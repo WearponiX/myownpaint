@@ -2,17 +2,28 @@ var templateColorPattern = document.querySelector('template#color-pattern').cont
 var newColor = document.querySelector('.input-container__add');
 var popup = document.querySelector('.popup-color');
 var popupBackground = document.querySelector('.popup-color__background');
+var form = document.forms.popupColorForm;
 
 popupBackground.addEventListener('click', function() {
   hide(popup);
 });
 
+form.popupName.addEventListener('blur', function(){
+  form.popupName.setCustomValidity('');
+  let name = form.popupName.value;
+  let thisColor = colors.querySelector('input.input-container__color--' + name.toLowerCase());
+  if (thisColor) {
+    form.popupName.setCustomValidity('Такой цвет уже есть. Выберите другое имя.');
+  }
+})
+
 popup.addEventListener('submit', function(event) {
   event.preventDefault();
   hide(popup);
-  let form = document.forms.popupColorForm;
+
   let name = form.popupName.value;
   let color = form.popupColor.value;
+
   addColor(name, color);
   var event = new Event('addcolor');
   popup.dispatchEvent(event);
@@ -44,7 +55,7 @@ function addColor(name, color) {
     document.querySelector('head').appendChild(tempStyle);
   };
   tempStyle.innerHTML += '.input-container__color--' + name.toLowerCase() + '::before{background:' + color + '}';
-  
+
   colors.appendChild(temp);
   temp.querySelector('input').checked = true;
 };
