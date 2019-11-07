@@ -1,14 +1,14 @@
 var canvas = document.querySelector('canvas.canvas-tools__canvas');
 var ctx = canvas.getContext('2d');
-
-var canvasX = canvas.getBoundingClientRect().left + pageXOffset;
-var canvasY = canvas.getBoundingClientRect().top + pageYOffset;
-
+var canvasX;
+var canvasY;
 window.onload = function() {
   canvas.addEventListener('mousedown', start)
 };
 
 function initDrawing() {
+  canvasX = canvas.getBoundingClientRect().left + pageXOffset;
+  canvasY = canvas.getBoundingClientRect().top + pageYOffset;
   ctx.strokeStyle = getColor();
   ctx.lineWidth = sliderInput.value;
   ctx.lineJoin = 'round';
